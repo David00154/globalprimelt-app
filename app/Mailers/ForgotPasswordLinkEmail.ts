@@ -39,7 +39,7 @@ export default class ForgotPasswordLinkEmail extends BaseMailer {
 
 We received a request to reset the password for your account. To proceed with the password reset process, please click on the following link:
 
-<a href="https://app.quadrafx.space/auth/forgot-password/reset-link/verify-with-code/?code=${resetCode}">Reset Link</a>
+<a href="https://app.globalprimelt.online/auth/forgot-password/reset-link/verify-with-code/?code=${resetCode}">Reset Link</a>
 
 If you did not request a password reset or are unsure why you received this email, please disregard it. Your account security is important to us, and we recommend contacting our support team if you have any concerns.`
           .split("\n")
