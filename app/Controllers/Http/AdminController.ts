@@ -2,6 +2,7 @@ import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Database from "@ioc:Adonis/Lucid/Database";
 import EmailClient from "App/Mailers/EmailClient";
+import TransactionNotification from "App/Mailers/TransactionNotification";
 
 import User from "App/Models/User";
 
@@ -50,8 +51,8 @@ export default class AdminController {
       if (payload.user_id) {
         let user = await User.findBy("id", payload.user_id);
         let newUser = user?.toJSON();
-        console.log(newUser);
-        await user
+        // console.log(newUser);
+        let newUser2 = await user
           ?.merge({
             profit: this.isEmpty(payload.profit)
               ? parseInt(newUser?.profit.replace(/,/g, ""))
@@ -77,6 +78,7 @@ export default class AdminController {
                 payload.total_referral_bonus!,
           })
           .save();
+        await new TransactionNotification(newUser2!, true).send();
         session.flash("form.success", "User topup added");
         return response.redirect().toRoute("addTopUp.show");
       }
@@ -130,8 +132,8 @@ export default class AdminController {
       if (payload.user_id) {
         let user = await User.findBy("id", payload.user_id);
         let newUser = user?.toJSON();
-        console.log(newUser);
-        await user
+        // console.log(newUser);
+        let newUser2 = await user
           ?.merge({
             profit: this.isEmpty(payload.profit)
               ? parseInt(newUser?.profit.replace(/,/g, ""))
@@ -157,6 +159,8 @@ export default class AdminController {
                 payload.total_referral_bonus!,
           })
           .save();
+
+        await new TransactionNotification(newUser2!, false).send();
         session.flash("form.success", "User topup reduced");
         return response.redirect().toRoute("reduceTopUp.show");
       }

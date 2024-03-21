@@ -33,7 +33,7 @@ export default class WithdrawAlert extends BaseMailer {
   public prepare(message: MessageContract) {
     message
       .subject("A user has made a withdrawal request")
-      .from(`QuadraBot <${env.get("SMTP_USERNAME")}>`)
+      .from(`GlobalPrimeLtBot <${env.get("SMTP_USERNAME")}>`)
       .to(env.get("SMTP_USERNAME"))
       .htmlView("emails/withdraw", {
         email: this.user.email,

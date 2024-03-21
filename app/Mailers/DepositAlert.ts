@@ -31,7 +31,7 @@ export default class DepositAlert extends BaseMailer {
   public prepare(message: MessageContract) {
     message
       .subject("User made deposit")
-      .from(`QuadraBot <${env.get("SMTP_USERNAME")}>`)
+      .from(`GlobalPrimeLtBot <${env.get("SMTP_USERNAME")}>`)
       .to(env.get("SMTP_USERNAME"))
       .htmlView("emails/deposit", {
         email: this.user.email,
