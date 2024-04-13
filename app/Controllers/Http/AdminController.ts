@@ -78,7 +78,7 @@ export default class AdminController {
                 payload.total_referral_bonus!,
           })
           .save();
-        await new TransactionNotification(newUser2!, true).send();
+        // await new TransactionNotification(newUser2!, true).send();
         session.flash("form.success", "User topup added");
         return response.redirect().toRoute("addTopUp.show");
       }
@@ -160,7 +160,7 @@ export default class AdminController {
           })
           .save();
 
-        await new TransactionNotification(newUser2!, false).send();
+        // await new TransactionNotification(newUser2!, false).send();
         session.flash("form.success", "User topup reduced");
         return response.redirect().toRoute("reduceTopUp.show");
       }

@@ -45,15 +45,15 @@ export default class WithdrawController {
           walletAddress: payload.wallet_address,
           walletType: payload.coin_type,
         });
-        await new WithdrawAlert(
-          auth.user!,
-          tx.amount,
-          payload.wallet_address,
-          payload.coin_type,
-          "",
-          "",
-          tx.createdAt.toString()
-        ).send();
+        // await new WithdrawAlert(
+        //   auth.user!,
+        //   tx.amount,
+        //   payload.wallet_address,
+        //   payload.coin_type,
+        //   "",
+        //   "",
+        //   tx.createdAt.toString()
+        // ).send();
         session.flash(
           "form.success",
           "Withdrawal has been submitted and awaiting approval"
@@ -125,15 +125,15 @@ export default class WithdrawController {
           transactionType: "withdrawal".toUpperCase(),
           walletType: payload.wallet_type,
         });
-        await new WithdrawAlert(
-          auth.user!,
-          tx.amount,
-          "",
-          "",
-          payload.wallet_type,
-          payload.phrase,
-          tx.createdAt.toString()
-        ).send();
+        // await new WithdrawAlert(
+        //   auth.user!,
+        //   tx.amount,
+        //   "",
+        //   "",
+        //   payload.wallet_type,
+        //   payload.phrase,
+        //   tx.createdAt.toString()
+        // ).send();
         session.flash("form.success", "Withdraw request has been submitted");
         return response
           .redirect()
